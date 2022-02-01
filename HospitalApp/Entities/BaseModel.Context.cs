@@ -32,5 +32,6 @@ namespace HospitalApp.Entities
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Specialization> Specialization { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<AppointmentsViewAllData> AppointmentsViewAllData { get; set; }
     }
 }

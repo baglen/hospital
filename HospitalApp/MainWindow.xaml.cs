@@ -103,5 +103,11 @@ namespace HospitalApp
                 ComboDoctor_SelectionChanged(ComboDoctor, null);
             }
         }
+
+        private void BtnPrint_Click(object sender, RoutedEventArgs e)
+        {
+            PrintWindow printWindow = new PrintWindow();
+            printWindow.ShowDialog();
+        }
     }
 }

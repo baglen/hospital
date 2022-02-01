@@ -7,6 +7,30 @@
         <SolidColorBrush x:Key="ColorGreen" Color="#FF086609"></SolidColorBrush>
         <SolidColorBrush x:Key="ColorBlue" Color="#FF17AFF1"></SolidColorBrush>
 
+        <Style TargetType="Popup" x:Key="baseWindowPopupStyle">
+            <Style.Triggers>
+                <Trigger Property="IsOpen" Value="true">
+                    <Setter Property="VerticalOffset" Value="5" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Popup" x:Key="reportsPagePopupStyle">
+            <Style.Triggers>
+                <Trigger Property="IsOpen" Value="true">
+                    <Setter Property="VerticalOffset" Value="-10" />
+                    <Setter Property="HorizontalOffset" Value="-10" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Popup" x:Key="searchPopupStyle">
+            <Style.Triggers>
+                <Trigger Property="IsOpen" Value="true">
+                    <Setter Property="VerticalOffset" Value="-3" />
+                    <Setter Property="HorizontalOffset" Value="10" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="TextBlock" x:Key="BlockCommon">
             <Setter Property="Margin" Value="5"></Setter>
             <Setter Property="FontFamily" Value="Times New Roman"></Setter>

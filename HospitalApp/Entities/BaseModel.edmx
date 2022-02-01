@@ -71,6 +71,22 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "HospitalBase.dbo.AppointmentsViewAllData" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="AppointmentsViewAllData">
+          <Key>
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="EndTime" />
+            <PropertyRef Name="CabinetNumber" />
+          </Key>
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="DoctorInfo" Type="nvarchar" MaxLength="56" />
+          <Property Name="CabinetNumber" Type="int" Nullable="false" />
+          <Property Name="ClientInfo" Type="nvarchar" MaxLength="56" />
+        </EntityType>
         <Association Name="FK_Appointment_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
@@ -139,6 +155,16 @@
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppointmentsViewAllData" EntityType="Self.AppointmentsViewAllData" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AppointmentsViewAllData].[Date] AS [Date], 
+    [AppointmentsViewAllData].[StartTime] AS [StartTime], 
+    [AppointmentsViewAllData].[EndTime] AS [EndTime], 
+    [AppointmentsViewAllData].[DoctorInfo] AS [DoctorInfo], 
+    [AppointmentsViewAllData].[CabinetNumber] AS [CabinetNumber], 
+    [AppointmentsViewAllData].[ClientInfo] AS [ClientInfo]
+    FROM [dbo].[AppointmentsViewAllData] AS [AppointmentsViewAllData]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Appointment_Client" Association="Self.FK_Appointment_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Appointment" EntitySet="Appointment" />
@@ -241,6 +267,20 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="AppointmentsViewAllData">
+          <Key>
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="EndTime" />
+            <PropertyRef Name="CabinetNumber" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="DoctorInfo" Type="String" MaxLength="56" FixedLength="false" Unicode="true" />
+          <Property Name="CabinetNumber" Type="Int32" Nullable="false" />
+          <Property Name="ClientInfo" Type="String" MaxLength="56" FixedLength="false" Unicode="true" />
+        </EntityType>
         <Association Name="FK_Appointment_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
@@ -309,6 +349,7 @@
           <EntitySet Name="Gender" EntityType="Self.Gender" />
           <EntitySet Name="Specialization" EntityType="Self.Specialization" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="AppointmentsViewAllData" EntityType="Self.AppointmentsViewAllData" />
           <AssociationSet Name="FK_Appointment_Client" Association="Self.FK_Appointment_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Appointment" EntitySet="Appointment" />
@@ -406,6 +447,18 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppointmentsViewAllData">
+            <EntityTypeMapping TypeName="HospitalBaseModel.AppointmentsViewAllData">
+              <MappingFragment StoreEntitySet="AppointmentsViewAllData">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="DoctorInfo" ColumnName="DoctorInfo" />
+                <ScalarProperty Name="CabinetNumber" ColumnName="CabinetNumber" />
+                <ScalarProperty Name="ClientInfo" ColumnName="ClientInfo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
