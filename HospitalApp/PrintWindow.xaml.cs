@@ -45,6 +45,8 @@ namespace HospitalApp
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
             var doctor = (Entities.Doctor)comboBoxDoctor.SelectedItem;
+            txtBlockDoctorAllData.Text = doctor.FullName;
+            txtBlockDoctorFreeTime.Text = doctor.FullName;
             lblNothingFound.Visibility = Visibility.Collapsed;
             try
             {
